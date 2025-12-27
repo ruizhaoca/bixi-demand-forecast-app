@@ -17,31 +17,20 @@ This project builds an **end-to-end machine learning pipeline** to predict **hou
 ```
 ├── data/
 │   ├── .gitattributes
-│   └── model_df.zip              # Compressed feature-engineered dataset: output of the first notebook and input to the last two notebooks
+│   └── model_df.zip           # Feature-engineered dataset: output of the first notebook and input to the last two notebooks
 ├── notebooks/
 │   ├── data_cleaning_eda_feature_engineering.ipynb  
-│   ├── model_clustering.ipynb    # Station clustering analysis
-│   └── model_lightgbm.ipynb      # Prediction model training & evaluation
-├── app.py                        # Streamlit dashboard app; requires the five files below as inputs
-├── model_lightgbm.txt            # Trained LightGBM model
-├── meta_lightgbm.pkl             # Model metadata & feature lookups
-├── station_clusters.csv          # Station cluster assignments
-├── requirements.txt              # Python dependencies
-└── runtime.txt                   # Python runtime version
+│   ├── model_clustering.ipynb # Station clustering analysis
+│   └── model_lightgbm.ipynb   # Prediction model training & evaluation
+├── app.py                     # Streamlit dashboard app; requires the five files below as inputs
+├── model_lightgbm.txt         # Trained LightGBM model
+├── meta_lightgbm.pkl          # Model metadata & feature lookups
+├── station_clusters.csv       # Station cluster assignments
+├── requirements.txt           # Python dependencies
+└── runtime.txt                # Python runtime version
 ```
 
-### Key Files
-
-| File | Description |
-|------|-------------|
-| `data_cleaning_eda_feature_engineering.ipynb` | Cleans BIXI trip data, performs EDA, and engineers features including temporal patterns and weather variables |
-| `model_clustering.ipynb` | Applies K-Means clustering to segment stations into low/medium/high demand tiers |
-| `model_lightgbm.ipynb` | Trains LightGBM with Optuna hyperparameter tuning, evaluates performance, and generates SHAP explanations |
-| `app.py` | Streamlit app providing demand forecasts and cluster visualization |
-| `model_lightgbm.txt` | Serialized LightGBM booster for inference |
-| `meta_lightgbm.pkl` | Contains feature names, station lists, and 2024 baseline demand lookups |
-| `station_clusters.csv` | Station metadata with cluster labels and mean demand |
-
+---
 ## Workflow
 
 ### 1. Data Cleaning & EDA

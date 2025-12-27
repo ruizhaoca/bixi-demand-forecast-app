@@ -100,7 +100,7 @@ This project builds an **end-to-end machine learning pipeline** to predict **hou
 The dashboard provides three views:
 
 - **16-Day Demand Forecast**
-   - Use real-time weather data from [Open-Meteo API](https://open-meteo.com/) (cached daily)
+   - Use weather forecast data from [Open-Meteo API](https://open-meteo.com/) (cached daily)
    - Single time-point prediction or full-day hourly forecast
    - Interactive line charts of predicted demand with a weather overlay
 

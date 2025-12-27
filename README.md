@@ -38,15 +38,15 @@ This project builds an **end-to-end machine learning pipeline** to predict **hou
 
 - **Data Sources:** [BIXI Montreal Open Data](https://bixi.com/en/open-data/) and [Montreal Weather Open Data](https://montreal.weatherstats.ca/download.html)
 - **Cleaning Steps:**
-  - Convert timestamps to datetime and choose data in 2024 and May/Oct 2025
-  - Fill in missing values by global means and linear interpolation
-  - Remove invalid trips (missing values cannot be filled, outlier duration trip)
-  - Filter to top 400 stations by 2024 trip volume
+  - Convert timestamps to datetime and filter the data to 2024 and May/Oct 2025
+  - Fill missing values using column-wise means and linear interpolation
+  - Remove invalid trips (unfillable missing values; outlier durations)
+  - Filter to the top 400 stations by 2024 trip volume
 - **Exploratory Analysis:**
   - Demand patterns by hour, day of week, and month
   - Holiday vs. non-holiday demand comparison
-  - Distribution and correlation analysis of weather variables
-- **Features engineered for models:**
+  - Distribution and correlation analyses of weather variables
+- **Features engineered:**
 
 | Feature | Description |
 |---------|-------------|
@@ -73,14 +73,15 @@ This project builds an **end-to-end machine learning pipeline** to predict **hou
   - **High demand:** 33 stations (~19.2 avg trips/hour)
 - **Validation:** Silhouette score indicates moderate-to-strong cluster separation
 
-### 4. Model Training & Evaluation
+---
+### 3. Model Training & Evaluation
 **Notebook:** `model_lightgbm.ipynb`
 
 - **Algorithm:** LightGBM (Gradient Boosting Decision Trees)
-- **Data Split:**
-  - Training: 2024 data (83%)
+- **Data Split (chronological):**
+  - Training: 2024 data (83%) — build 2024-based baseline features for forecasting
   - Validation: May 2025 (9%)
-  - Test: October 2025 (8%)
+  - Test: Oct 2025 (8%) — May and Oct show moderate demand and are more representative months for validation and testing
 - **Hyperparameter Tuning:** Bayesian optimization via Optuna (40 trials)
 - **Evaluation Metrics:**
 
@@ -92,7 +93,8 @@ This project builds an **end-to-end machine learning pipeline** to predict **hou
 
 - **Model Interpretation:** SHAP analysis reveals top predictors are `station_hour_demand_24`, `station_month_demand_24`, and `temperature`
 
-### 5. Streamlit Application
+---
+### 4. Streamlit Application
 **File:** `app.py`
 
 The dashboard provides three views:

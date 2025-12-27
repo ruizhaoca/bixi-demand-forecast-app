@@ -1,19 +1,9 @@
-# 🚲 BIXI Station Hourly Demand Prediction
-
-A machine learning project that predicts hourly bike-sharing demand for BIXI stations in Montreal, featuring an interactive Streamlit dashboard with real-time weather integration.
+# BIXI Station Hourly Demand Prediction
 
 ## Project Overview
+This project builds an **end-to-end machine learning pipeline** to predict **hourly bike-sharing demand** for **BIXI stations in Montreal** and presents the results through an **interactive Streamlit dashboard** with **real-time weather data**.
 
-### Problem Statement
-BIXI, Montreal's public bike-sharing system, needs to anticipate station-level bike demand to optimize fleet rebalancing and improve service availability. This project addresses that challenge by building a predictive model that forecasts hourly demand at individual stations.
-
-### Solution
-This end-to-end ML pipeline:
-- Processes historical trip data from BIXI's open data portal
-- Engineers features from temporal patterns and weather conditions
-- Trains a LightGBM regression model with Bayesian hyperparameter optimization
-- Clusters stations by demand level using K-Means
-- Deploys predictions through an interactive Streamlit dashboard with 16-day weather forecast integration
+Using **historical BIXI trip data** and **Montreal weather data**, the pipeline performs data cleaning and feature engineering on **temporal and weather features**, trains a **LightGBM regression model** with **Bayesian hyperparameter optimization**, and groups stations into demand tiers using **K-Means clustering**. The Streamlit app integrates a **16-day weather forecast** from the **Open-Meteo API** and visualizes station clusters with a **PyDeck heatmap** to support **station-level operational planning**.
 
 ## Repository Structure
 
@@ -139,57 +129,6 @@ The dashboard provides three views:
 | **Web Application** | Streamlit |
 | **Weather API** | Open-Meteo |
 
-## How to Run Locally
-
-### Prerequisites
-- Python 3.11+
-- pip or conda
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd bixi-demand-prediction
-   ```
-
-2. **Create a virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Extract the data** (if running notebooks)
-   ```bash
-   cd data
-   unzip model_df.zip
-   cd ..
-   ```
-
-### Running the Streamlit App
-
-```bash
-streamlit run app.py
-```
-
-The app will open in your browser at `http://localhost:8501`.
-
-### Running the Notebooks
-
-Launch Jupyter and run notebooks in order:
-```bash
-jupyter notebook
-```
-
-1. `data_cleaning_eda_feature_engineering.ipynb`
-2. `model_clustering.ipynb`
-3. `model_lightgbm.ipynb`
-
 ## Data Sources
 
 - **BIXI Trip Data:** [BIXI Montreal Open Data](https://bixi.com/en/open-data/)
@@ -201,7 +140,3 @@ jupyter notebook
 - The model uses 2024 historical patterns as baseline features for future predictions
 - Only the top 400 stations by trip volume are included in the analysis
 - Weather forecasts are limited to 16 days ahead (API constraint)
-
-## License
-
-This project is for educational and research purposes.

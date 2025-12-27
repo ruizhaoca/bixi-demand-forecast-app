@@ -1,5 +1,7 @@
 # BIXI Station Hourly Demand Prediction
 **Live demo:** https://bixi-demand-dashboard.streamlit.app/
+
+---
 ![1](https://github.com/user-attachments/assets/be920a54-8920-4684-b21a-f190809852b1)
 
 ---
@@ -9,17 +11,18 @@
 ## Project Overview
 This project builds an **end-to-end machine learning pipeline** to predict **hourly bike-sharing demand** for **BIXI stations in Montreal**. Using **historical BIXI trip data** and **Montreal weather data**, the pipeline performs data cleaning and feature engineering on **temporal and weather features**, trains a **LightGBM regression model** with **Bayesian hyperparameter optimization**, and groups stations into demand tiers using **K-Means clustering**. The Streamlit app integrates a **16-day weather forecast** from the **Open-Meteo API** and visualizes station clusters with a **PyDeck heatmap** to support **station-level operational planning**.
 
+---
 ## Repository Structure
 
 ```
 ├── data/
 │   ├── .gitattributes
-│   └── model_df.zip              # Compressed feature-engineered dataset
+│   └── model_df.zip              # Compressed feature-engineered dataset: output of the first notebook and input to the last two notebooks
 ├── notebooks/
-│   ├── data_cleaning_eda_feature_engineering.ipynb   # Data processing & EDA
-│   ├── model_clustering.ipynb                        # Station clustering analysis
-│   └── model_lightgbm.ipynb                          # Model training & evaluation
-├── app.py                        # Streamlit dashboard application
+│   ├── data_cleaning_eda_feature_engineering.ipynb  
+│   ├── model_clustering.ipynb    # Station clustering analysis
+│   └── model_lightgbm.ipynb      # Prediction model training & evaluation
+├── app.py                        # Streamlit dashboard app; requires the five files below as inputs
 ├── model_lightgbm.txt            # Trained LightGBM model
 ├── meta_lightgbm.pkl             # Model metadata & feature lookups
 ├── station_clusters.csv          # Station cluster assignments
